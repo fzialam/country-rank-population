@@ -6,6 +6,9 @@ import { UrlConstant } from '../../constant/url-constant';
 import { useNavigate, useParams } from 'react-router-dom';
 import CompareDetail from './compare-detail';
 
+import '../../assets/css/compare-form.css'
+import { CountrySelection } from '../../components/country-selection';
+
 function CompareForm() {
     const data = useSelector((state) => state.countries.map(
         country => ({
@@ -30,7 +33,7 @@ function CompareForm() {
 
     useEffect(() => {
         if (data.length === 0 && (dataMaster.countries.length === 0 || dataMaster.filteredCountries1.length === 0 && dataMaster.filteredCountries2.length === 0)) {
-            
+
             const getLocalstg = JSON.parse(window.localStorage.getItem('countries'));
             if (getLocalstg) {
                 const formatedData = getLocalstg.map(country => ({
@@ -132,77 +135,28 @@ function CompareForm() {
     };
 
     return (
-        <div>
-            <h1>Compare Form</h1>
-            <form onSubmit={handleCompare}>
-                <div className="row">
-
-                    <div className="mb-3 col">
-                        {selectedCountry1 ? (
-                            <img
-                                src={selectedCountry1.flag}
-                                alt={selectedCountry1.name}
-                                height="100"
-                                width="200"
-                            />
-                        ) : (
-                            <div
-                                className="bg-light border border-1"
-                                style={{ height: '100px', width: '200px' }}
-                            ></div>
-                        )}
-                        <label htmlFor="country1" className="form-label">Select Country 1</label>
-                        <ReactSearchAutocomplete
-                            items={dataMaster.filteredCountries1}
-                            onSelect={handleSelect1}
-                            onClear={handleClear1}
-                            fuseOptions={{ keys: ['name'] }}
-                            resultStringKeyName="name"
-                            placeholder="Search countries"
-                            styling={{ height: "40px", borderRadius: "5px", padding: "5px" }}
-                        />
+        <div className="container mt-4">
+            <div id="form" className="">
+                <h1 className="text-center mb-4">Compare Form</h1>
+                <form onSubmit={handleCompare}>
+                    <div className="row g-3">
+                        <CountrySelection country={selectedCountry1} onSelect={handleSelect1} onClear={handleClear1} data={dataMaster.filteredCountries1} />
+                        <CountrySelection country={selectedCountry2} onSelect={handleSelect2} onClear={handleClear2} data={dataMaster.filteredCountries2} />
                     </div>
-
-                    <div className="mb-3 col">
-                        {selectedCountry2 ? (
-                            <img
-                                src={selectedCountry2.flag}
-                                alt={selectedCountry2.name}
-                                height="100"
-                                width="200"
-                            />
-                        ) : (
-                            <div
-                                className="bg-light border border-1"
-                                style={{ height: '100px', width: '200px' }}
-                            ></div>
-                        )}
-                        <label htmlFor="country2" className="form-label">Select Country 2</label>
-                        <ReactSearchAutocomplete
-                            items={dataMaster.filteredCountries2}
-                            onSelect={handleSelect2}
-                            onClear={handleClear2}
-                            fuseOptions={{ keys: ['name'] }}
-                            resultStringKeyName="name"
-                            placeholder="Search countries"
-                            styling={{ height: "40px", borderRadius: "5px", padding: "5px" }}
-                        />
+                    <div className="text-center mt-3">
+                        <button className="btn btn-outline-primary btn-lg" type="submit">Compare</button>
                     </div>
-                </div>
+                </form>
+            </div>
 
-                <div>
-                    <button className='btn btn-outline-info' type='submit'>Compare</button>
-                </div>
-            </form>
-            {dataMaster.submite}
-            {
-                dataMaster.submited || (param1 && param2) &&
-                <div className="mt-5">
+            {dataMaster.submited || (param1 && param2) && (
+                <div className="mt-5 text-center">
                     <CompareDetail />
                 </div>
-            }
+            )}
         </div>
     );
+
 }
 
 export default CompareForm;

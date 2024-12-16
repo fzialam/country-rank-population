@@ -2,8 +2,8 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { useNavigate } from 'react-router-dom'
-import openStreet from '../assets/map-svgrepo-com.svg'
-import googleMap from '../assets/map-pin-svgrepo-com.svg'
+import openStreet from '../assets/img/map-svgrepo-com.svg'
+import googleMap from '../assets/img/map-pin-svgrepo-com.svg'
 
 export const RowTable = (props) => {
     const navigate = useNavigate();

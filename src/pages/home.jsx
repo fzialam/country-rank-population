@@ -16,7 +16,7 @@ function Home() {
 
     useEffect(() => {
         checkGetData(data, dispatch);
-        
+
         dispatch({
             type: 'LOADING',
             loading: false,
@@ -77,55 +77,67 @@ function Home() {
     };
 
     return (
-        <div>
-            <h1>Home</h1>
-            <table className="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">
-                            Flag
-                        </th>
-                        <th scope="col" onClick={() => sortData("name.common")}>
-                            Name {getSortIcon("name.common")}
-                        </th>
-                        <th scope="col" onClick={() => sortData("population")}>
-                            Population {getSortIcon("population")}
-                        </th>
-                        <th scope="col" onClick={() => sortData("area")}>
-                            Area (KM²) {getSortIcon("area")}
-                        </th>
-                        <th scope="col" onClick={() => sortData("region")}>
-                            Region {getSortIcon("region")}
-                        </th>
-                        <th scope="col">
-                            Maps
-                        </th>
-                    </tr>
-                </thead>
-                <tbody className="">
-                    {
-                        loading ? (
-                            <p>Loading...</p>
-                        ) :
+        <div className="container-sm mt-5">
+            <h1 className="text-center mb-4">Country Data</h1>
+    
+            {/* Table Section with Responsive Wrapper */}
+            <div className="overflow-x-auto shadow-sm rounded">
+                <table className="table table-striped table-hover">
+                    <thead className="table-dark text-center">
+                        <tr>
+                            <th scope="col">Flag</th>
+                            <th scope="col" onClick={() => sortData("name.common")}>
+                                Name {getSortIcon("name.common")}
+                            </th>
+                            <th scope="col" onClick={() => sortData("population")}>
+                                Population {getSortIcon("population")}
+                            </th>
+                            <th scope="col" onClick={() => sortData("area")}>
+                                Area (KM²) {getSortIcon("area")}
+                            </th>
+                            <th scope="col" onClick={() => sortData("region")}>
+                                Region {getSortIcon("region")}
+                            </th>
+                            <th scope="col">Maps</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-center align-middle">
+                        {loading ? (
+                            <tr>
+                                <td colSpan="6">
+                                    <div className="d-flex justify-content-center py-3">
+                                        <div className="spinner-border text-primary" role="status">
+                                            <span className="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        ) : (
                             <RowTable data={currentItems} />
-                    }
-                </tbody>
-            </table>
-            <div>
-                {
-                    loading ? (
-                        <p>Loading...</p>
-                    ) :
-                        <Pagination
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            paginate={paginate}
-                        />
-                }
-
+                        )}
+                    </tbody>
+                </table>
+            </div>
+    
+            {/* Pagination Section */}
+            <div className="d-flex justify-content-center mt-4">
+                {loading ? (
+                    <div className="d-flex justify-content-center py-3">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                ) : (
+                    <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        paginate={paginate}
+                    />
+                )}
             </div>
         </div>
-    )
+    );
+    
 }
 
 export default Home;

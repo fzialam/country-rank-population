@@ -1,13 +1,18 @@
 import './App.css'
 import { Outlet, NavLink } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
 
 function App() {
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+    <div className='container-fluid'>
+      <nav className="navbar navbar-expand-lg fixed-top shadow nav-bg bg-body-tertiary">
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
-            MyApp
+            <span className='fw-bold'>
+              MyApp
+            </span>
           </NavLink>
           <button
             className="navbar-toggler"
@@ -24,8 +29,8 @@ function App() {
             <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink
-                  className={({ isActive }) => 
-                    isActive ? 'nav-link active' : 'nav-link'
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link active fw-medium' : 'nav-link'
                   }
                   to="/"
                 >
@@ -34,8 +39,8 @@ function App() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className={({ isActive }) => 
-                    isActive ? 'nav-link active' : 'nav-link'
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link active fw-medium' : 'nav-link'
                   }
                   to="/articles"
                 >
@@ -44,8 +49,8 @@ function App() {
               </li>
               <li className="nav-item">
                 <NavLink
-                  className={({ isActive }) => 
-                    isActive ? 'nav-link active' : 'nav-link'
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link active fw-medium' : 'nav-link'
                   }
                   to="/compare"
                 >
@@ -57,7 +62,7 @@ function App() {
         </div>
       </nav>
       {/* Add padding to prevent content from overlapping */}
-      <div style={{ marginTop: '56px' }}>
+      <div className=' w-100' style={{ marginTop: '56px' }}>
         <Outlet />
       </div>
     </div>
