@@ -8,29 +8,35 @@ import App from "./App";
 
 const router = createBrowserRouter([
     {
-        path: '/',
-        element: <App />,
-        children: [
+        path:'/',
+        element: <App/>,
+        children:[
             {
                 path: '',
-                element: <Home />
+                element: <Home/>
             },
             {
-                path: 'articles',
-                element: <Articles />
+                path:'articles',
+                element: <Articles/> 
             },
             {
-                path: 'detail/:param',
-                element: <Articles />
+                path:'detail/:param',
+                element: <Articles/> 
             },
             {
-                path: 'compare',
-                element: <CompareForm />,
+                path:'compare',
+                element: <CompareForm/>,
+                children:[
+                    {
+                        path:'',
+                        element: <CompareForm/>
+                    },
+                    {
+                        path:':param1/n/:param2',
+                        element: <CompareDetail/> ,
+                    }
+                ]
             },
-            {
-                path: 'compare/:param1/n/:param2',
-                element: <CompareDetail />,
-            }
         ]
     }
 ])

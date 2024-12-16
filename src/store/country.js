@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { UrlConstant } from '../constant/url-constant';
 
+//#region  Fetch API
 export const fetchCountries = () => {
     return async (dispatch) => {
         try {
@@ -23,17 +24,51 @@ export const fetchCountries = () => {
             });
 
             window.localStorage.setItem('countries', JSON.stringify(formattedData));
-
-            // dispatch({
-            //     type: 'LOADING',
-            //     loading: false,
-            // });
         } catch (error) {
             console.error('Error fetching countries:', error);
 
         }
     };
 };
+
+export function getCountryByCCA3(req, dispatch) {
+    dispatch({
+        type: 'LOADING',
+        loading: true,
+    });
+
+    if (!req) {
+        return alert('Invalid Request')
+    }
+
+    const getLocalstg = JSON.parse(window.localStorage.getItem('countries'));
+    if (getLocalstg) {
+        console.log('LOCAL',getLocalstg.filter((x) => req.includes(x.cca3)));
+        return getLocalstg.filter((x) => req.includes(x.cca3))
+    }
+    else {
+            axios.get(UrlConstant.FETCH_COUNTRIES_BY_CODE, {
+                params: {
+                    codes: req
+                }
+            })
+            .then((response) => {
+                if (response.data){
+                    console.log('FETCH', response.data);
+                    
+                    return response.data;
+                }
+                else {
+                    return alert('Data not Found');
+                }
+            })
+            .catch((e)=> {
+                console.error('Error Get Country By CCA3', e);
+            })
+    }
+
+}
+//#endregion
 
 export function checkGetData(data, dispatch) {
     if (data.length === 0) {
@@ -48,18 +83,5 @@ export function checkGetData(data, dispatch) {
                 countries: getLocalstg
             })
         }
-    }
-}
-
-export function checkGetDataForList(dispatch) {
-    const localData = JSON.parse(window.localStorage.getItem('countries'));
-
-    if (!localData) {
-        dispatch(fetchCountries());
-    } else {
-        dispatch({
-            type: 'INIT',
-            countries: localData,
-        });
     }
 }
