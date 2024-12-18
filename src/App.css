@@ -8,3 +8,12 @@ body {
 .nav-bg{
   background-color: #362706;
 }
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(0.95);
+}
