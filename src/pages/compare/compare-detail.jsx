@@ -43,16 +43,7 @@ function CompareDetail() {
         loading ? (
             <p>Loading...</p>
         ) : (
-            <div>
-                <h1>
-                    UHY
-                    {/* {
-                        countries.cntry1.cca3
-                    }
-                    {
-                        countries.cntry2.cca3
-                    } */}
-                </h1>
+            <div className="bg-primary">
                 <h1>{request} iki request</h1>
                 <h1>Compare Detail</h1>
                 <h1>{param1}</h1>
