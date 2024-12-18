@@ -13,8 +13,8 @@ export const fetchCountries = () => {
             const response = await axios.get(UrlConstant.FETCH_COUNTRIES);
 
             const formattedData = response.data.sort((a, b) => {
-                if (a.cca3 < b.cca3) return -1;
-                if (a.cca3 > b.cca3) return 1;
+                if (a.name.common.toLowerCase() < b.name.common.toLowerCase()) return -1;
+                if (a.name.common.toLowerCase() > b.name.common.toLowerCase()) return 1;
                 return 0;
             });
 
