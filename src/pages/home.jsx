@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CommonConstant } from "../constant/common-constant";
 import { Pagination } from "../components/pagination";
 import { checkGetData } from "../store/country";
+import { ReducerConstant } from "../constant/reducer-constant";
 
 function Home() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ function Home() {
     checkGetData(data, dispatch);
 
     dispatch({
-      type: "LOADING",
+      type: ReducerConstant.LOADING,
       loading: false,
     });
 
@@ -50,7 +51,7 @@ function Home() {
     setSortedData(sorted);
 
     dispatch({
-      type: "INIT",
+      type: ReducerConstant.INIT,
       countries: sorted,
     });
   };
