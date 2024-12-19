@@ -22,7 +22,6 @@ export const CompareDetail = () => {
   useEffect(() => {
     setRequest([param1, param2]);
   }, [param1, param2]);
-  console.log("iki response ning jono", loading);
 
   useEffect(() => {
     dispatch({
