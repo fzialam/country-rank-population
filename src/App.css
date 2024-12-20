@@ -8,6 +8,15 @@ body {
 .nav-bg{
   background-color: #362706;
 }
+.pagination {
+  gap: 0.25rem; /* Tambahkan jarak antar tombol */
+}
+
+.page-link {
+  min-width: 2.5rem; /* Ukuran tombol lebih besar */
+  text-align: center;
+}
+
 
 .card {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

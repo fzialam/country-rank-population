@@ -78,10 +78,10 @@ function Home() {
   };
 
   return (
-    <div className="container-sm mt-5">
+    <div className="container mt-5">
       <h1 className="text-center">Country Rank Population</h1>
-      <div className="overflow-x-auto shadow-sm rounded">
-        <SearchFormComponent data={sortedData}/>
+      <SearchFormComponent data={sortedData} />
+      <div className="overflow-x-auto shadow-sm rounded ">
         <table className="table table-striped table-hover">
           <thead className="table-dark text-center">
             <tr>
@@ -120,7 +120,7 @@ function Home() {
       </div>
 
       {/* Pagination Section */}
-      <div className="d-flex justify-content-center mt-4">
+      <div className="d-flex justify-content-center mt-4 w-auto">
         {loading ? (
           <div className="d-flex justify-content-center py-3">
             <div className="spinner-border text-primary" role="status">
