@@ -9,7 +9,7 @@ import { CompareDetail } from "./compare-detail";
 import "../../assets/css/compare-form.css";
 import { CountrySelection } from "../../components/country-selection";
 import { ReducerConstant } from "../../constant/reducer-constant";
-import { getCountryByCCA3 } from "../../store/country";
+import { getCountryForCompareByCCA3 } from "../../store/country";
 
 function CompareForm() {
   const data = useSelector((state) =>
@@ -133,7 +133,7 @@ function CompareForm() {
         submited: true,
       }));
 
-      getCountryByCCA3([param1, param2], dispatch)
+      getCountryForCompareByCCA3([param1, param2], dispatch)
 
       dispatch({
         type: ReducerConstant.LOADING,

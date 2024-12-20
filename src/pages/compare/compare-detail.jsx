@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getCountryByCCA3 } from "../../store/country";
+import { getCountryForCompareByCCA3 } from "../../store/country";
 import { DetailCompareComponent } from "../../components/detail-compare-component";
 import { ReducerConstant } from "../../constant/reducer-constant";
 import { DetailCompareFlagComponent } from "../../components/detail-compare-flag-component";
@@ -30,7 +30,7 @@ export const CompareDetail = () => {
       loading: true,
     });
     if (request) {
-      getCountryByCCA3(request, dispatch);
+      getCountryForCompareByCCA3(request, dispatch);
     }
   }, [request, dispatch]);
 
