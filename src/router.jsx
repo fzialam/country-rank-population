@@ -20,10 +20,6 @@ const router = createBrowserRouter([
         element: <Articles />,
       },
       {
-        path: "detail/:param",
-        element: <Articles />,
-      },
-      {
         path: "compare",
         element: <CompareForm />,
         children: [],
