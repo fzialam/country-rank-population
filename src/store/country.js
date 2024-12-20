@@ -32,7 +32,7 @@ export const fetchCountries = () => {
   };
 };
 
-export async function getCountryByCCA3(codes, dispatch) {
+export async function getCountryForCompareByCCA3(codes, dispatch) {
   dispatch({
     type: ReducerConstant.LOADING,
     loading: true,
@@ -69,6 +69,38 @@ export async function getCountryByCCA3(codes, dispatch) {
             type: ReducerConstant.COMPARE,
             comparedData,
           });
+        } else {
+          return alert("Data not Found");
+        }
+      })
+      .catch((e) => {
+        console.error("Error Get Country By CCA3", e);
+      });
+  }
+}
+
+export function getCountryForDetailByCCA3(codes, dispatch) {
+  if (!codes) {
+    return alert("Invalid Request");
+  }
+  console.log('CODES',codes);
+  
+  
+  const getLocalstg = JSON.parse(window.localStorage.getItem("countries"));
+  if (getLocalstg) {
+    console.log('getLocalstg',getLocalstg.filter((x) => codes.includes(x.cca3)));
+    return getLocalstg.filter((x) => codes.includes(x.cca3));
+  } else {
+    console.log("FETCHING", codes);
+    axios
+      .get(UrlConstant.FETCH_COUNTRIES_BY_CODE, {
+        params: {
+          codes: codes.join(","),
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          return response.data;
         } else {
           return alert("Data not Found");
         }

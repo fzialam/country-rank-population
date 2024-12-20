@@ -1,4 +1,5 @@
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { InputSearchCountryComponent } from "./input-search-country-component";
 
 export const CountrySelection = ({ country, onSelect, onClear, data }) => (
   <div className="mb-3 col-lg-6 d-flex flex-column align-items-center">
@@ -23,15 +24,10 @@ export const CountrySelection = ({ country, onSelect, onClear, data }) => (
     <label htmlFor="country" className="form-label text-center">
       Select Country
     </label>
-    <ReactSearchAutocomplete
-      items={data}
-      onSelect={onSelect}
+    <InputSearchCountryComponent 
+      data={data}
       onClear={onClear}
-      fuseOptions={{ keys: ["name"] }}
-      resultStringKeyName="name"
-      placeholder={"Search Country"}
-      className="form-control search-container"
-      style={{ backgroundColor: "#333", color: "#fff" }}
+      onSelect={onSelect}
     />
   </div>
 );

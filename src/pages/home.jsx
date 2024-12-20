@@ -7,6 +7,7 @@ import { CommonConstant } from "../constant/common-constant";
 import { Pagination } from "../components/pagination";
 import { checkGetData } from "../store/country";
 import { ReducerConstant } from "../constant/reducer-constant";
+import { SearchFormComponent } from "../components/search-form-component";
 
 function Home() {
   const dispatch = useDispatch();
@@ -78,10 +79,9 @@ function Home() {
 
   return (
     <div className="container-sm mt-5">
-      <h1 className="text-center mb-4">Country Data</h1>
-
-      {/* Table Section with Responsive Wrapper */}
+      <h1 className="text-center">Country Rank Population</h1>
       <div className="overflow-x-auto shadow-sm rounded">
+        <SearchFormComponent data={sortedData}/>
         <table className="table table-striped table-hover">
           <thead className="table-dark text-center">
             <tr>
