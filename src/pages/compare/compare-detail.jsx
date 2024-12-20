@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getCountryForCompareByCCA3 } from "../../store/country";
-import { DetailCompareComponent } from "../../components/detail-compare-component";
 import { ReducerConstant } from "../../constant/reducer-constant";
-import { DetailCompareFlagComponent } from "../../components/detail-compare-flag-component";
-import { DetailCompareMapsComponent } from "../../components/detail-compare maps";
+import { DetailCompareNameComponent } from "../../components/detail-compare/detai;-compare-name-component";
+import { DetailCompareComponent } from "../../components/detail-compare/detail-compare-component";
+import { DetailCompareFlagComponent } from "../../components/detail-compare/detail-compare-flag-component";
+import { DetailCompareMapsComponent } from "../../components/detail-compare/detail-compare-maps-component";
 
 export const CompareDetail = () => {
   const dispatch = useDispatch();
@@ -56,11 +57,11 @@ export const CompareDetail = () => {
     <div className="container mt-5 rounded-4 bg-warning">
       <table className="table table-borderless">
         <thead>
-          <tr className="text-center fw-bolder h4 border border-bottom-100">
-            <td className="mt-1">{countries.cntry1.name.common}</td>
-            <td className="mt-1">Comparasion</td>
-            <td className="mt-1">{countries.cntry2.name.common}</td>
-          </tr>
+          <DetailCompareNameComponent
+            detail={"Comparasion"}
+            countryA={countries.cntry1}
+            countryB={countries.cntry2}
+          />
         </thead>
         <tbody>
           <DetailCompareFlagComponent
@@ -136,27 +137,26 @@ export const CompareDetail = () => {
           />
           <DetailCompareComponent
             detail={"Currency"}
-            countryA={
-              countries.cntry1.currencies
-                ? `(${Object.values(countries.cntry1.currencies)[0].symbol}) ` +
+            countryA=
+            {countries.cntry1.currencies
+              ? `${Object.keys(countries.cntry1.currencies)[0]} - ${
                   Object.values(countries.cntry1.currencies)[0].name
-                : "-"
-            }
-            countryB={
-              countries.cntry2.currencies
-                ? `(${Object.values(countries.cntry2.currencies)[0].symbol}) ` +
+                } (${
+                  Object.values(countries.cntry1.currencies)[0].symbol
+                })`
+              : "-"}
+            countryB={countries.cntry2.currencies
+              ? `${Object.keys(countries.cntry2.currencies)[0]} - ${
                   Object.values(countries.cntry2.currencies)[0].name
-                : "-"
-            }
+                } (${
+                  Object.values(countries.cntry2.currencies)[0].symbol
+                })`
+              : "-"}
           />
           <DetailCompareMapsComponent
             detail={"Maps"}
-            countryA={
-              countries.cntry1
-            }
-            countryB={
-              countries.cntry2
-            }
+            countryA={countries.cntry1}
+            countryB={countries.cntry2}
           />
         </tbody>
       </table>

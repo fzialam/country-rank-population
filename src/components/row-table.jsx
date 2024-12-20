@@ -7,14 +7,8 @@ import googleMap from "../assets/img/google-maps-platform-svgrepo-com.svg";
 import { PopupDetailComponent } from "./pop-up-detail-component";
 
 export const RowTable = (props) => {
-  const navigate = useNavigate();
   const [popUp, setPopUp] = useState(false);
   const [clicked, setClicked] = useState();
-  const handleClicked = (param) => {
-    setClicked(param);
-    console.log(clicked);
-    // navigate(`detail/${param}`)
-  };
 
   return (
     <>
