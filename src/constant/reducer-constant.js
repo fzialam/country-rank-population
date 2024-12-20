@@ -3,5 +3,6 @@ export class ReducerConstant{
     static SEARCH = 'SEARCH';
     static LOADING = 'LOADING';
     static COMPARE = 'COMPARE';
+    static ARTICLES = 'ARTICLES';
 }
 
