@@ -9,6 +9,19 @@ import { PopupDetailComponent } from "./pop-up-detail-component";
 export const RowTable = (props) => {
   const [popUp, setPopUp] = useState(false);
   const [clicked, setClicked] = useState();
+  
+  const formatNumber = (num) => {
+    if (num >= 1000000000) { 
+      return (num / 1000000000).toFixed(2) + ' B';
+    }
+    if (num >= 1000000) { 
+      return (num / 1000000).toFixed(2) + ' M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(2) + ' K';
+    }
+    return num;
+  }
 
   return (
     <>
@@ -37,9 +50,9 @@ export const RowTable = (props) => {
             </a>
           </td>
           <td className="fw-medium">
-            {country.population.toLocaleString("id-ID")}
+            {formatNumber(country.population).toLocaleString("id-ID")}
           </td>
-          <td className="fw-medium">{country.area.toLocaleString("id-ID")}</td>
+          <td className="fw-medium">{formatNumber(country.area).toLocaleString("id-ID")}</td>
           <td className="fw-medium">{country.region}</td>
           <td>
             <a

@@ -17,6 +17,19 @@ export const PopupDetailComponent = ({ data, onClose }) => {
     }
   }, [isClosing, onClose]);
 
+  const formatNumber = (num) => {
+    if (num >= 1000000000) { 
+      return (num / 1000000000).toFixed(2) + ' B';
+    }
+    if (num >= 1000000) { 
+      return (num / 1000000).toFixed(2) + ' M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(2) + ' K';
+    }
+    return num;
+  }
+
   const handleOverlayClick = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target)) {
       setIsClosing(true);
@@ -105,12 +118,12 @@ export const PopupDetailComponent = ({ data, onClose }) => {
                       <div className="col-md-6 mb-2">
                         <label className="fw-semibold">Population : </label>{" "}
                         <span className="fw-normal">
-                          {country.population.toLocaleString("id-ID")}
+                          {formatNumber(country.population).toLocaleString("id-ID")}
                         </span>
                       </div>
                       <div className="col-md-6 mb-2">
                         <label className="fw-semibold">Area : </label>{" "}
-                        <span className="fw-normal">{country.area.toLocaleString("id-ID")} km²</span>
+                        <span className="fw-normal">{formatNumber(country.area).toLocaleString("id-ID")} km²</span>
                       </div>
                       <div className="col-md-6 mb-2">
                         <label className="fw-semibold">Lat & Long : </label>{" "}

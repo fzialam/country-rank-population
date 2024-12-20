@@ -21,6 +21,19 @@ export const CompareDetail = () => {
     cntry2: comparedData.find((x) => x.cca3 === param2),
   });
 
+  const formatNumber = (num) => {
+    if (num >= 1000000000) { 
+      return (num / 1000000000).toFixed(2) + ' B';
+    }
+    if (num >= 1000000) { 
+      return (num / 1000000).toFixed(2) + ' M';
+    }
+    if (num >= 1000) {
+      return (num / 1000).toFixed(2) + ' K';
+    }
+    return num;
+  }
+
   useEffect(() => {
     setRequest([param1, param2]);
   }, [param1, param2]);
@@ -110,13 +123,13 @@ export const CompareDetail = () => {
           />
           <DetailCompareComponent
             detail={"Population"}
-            countryA={countries.cntry1.population.toLocaleString("id-ID")}
-            countryB={countries.cntry2.population.toLocaleString("id-ID")}
+            countryA={formatNumber(countries.cntry1.population).toLocaleString("id-ID")}
+            countryB={formatNumber(countries.cntry2.population).toLocaleString("id-ID")}
           />
           <DetailCompareComponent
             detail={"Area of the State (KM²)"}
-            countryA={countries.cntry1.area.toLocaleString("id-ID")}
-            countryB={countries.cntry2.area.toLocaleString("id-ID")}
+            countryA={formatNumber(countries.cntry1.area).toLocaleString("id-ID")}
+            countryB={formatNumber(countries.cntry2.area).toLocaleString("id-ID")}
           />
           <DetailCompareComponent
             detail={"Official Language"}
