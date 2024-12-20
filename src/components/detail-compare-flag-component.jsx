@@ -5,7 +5,7 @@ export const DetailCompareFlagComponent = ({ detail, countryA, countryB }) => {
           <img
             src={countryA.flags.png}
             alt={countryA.name.common}
-            className="img-fluid"
+            className="img-fluid shadow-lg"
             style={{ objectFit: "fill", width: "50%", height: "50%" }}
           />
         </td>

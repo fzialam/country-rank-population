@@ -5,6 +5,7 @@ import { getCountryByCCA3 } from "../../store/country";
 import { DetailCompareComponent } from "../../components/detail-compare-component";
 import { ReducerConstant } from "../../constant/reducer-constant";
 import { DetailCompareFlagComponent } from "../../components/detail-compare-flag-component";
+import { DetailCompareMapsComponent } from "../../components/detail-compare maps";
 
 export const CompareDetail = () => {
   const dispatch = useDispatch();
@@ -68,6 +69,32 @@ export const CompareDetail = () => {
             countryB={countries.cntry2}
           />
           <DetailCompareComponent
+            detail={"Region"}
+            countryA={
+              countries.cntry1.region == undefined
+                ? "-"
+                : countries.cntry1.region
+            }
+            countryB={
+              countries.cntry2.region == undefined
+                ? "-"
+                : countries.cntry2.region
+            }
+          />
+          <DetailCompareComponent
+            detail={"Sub Region"}
+            countryA={
+              countries.cntry1.subregion == undefined
+                ? "-"
+                : countries.cntry1.subregion
+            }
+            countryB={
+              countries.cntry2.subregion == undefined
+                ? "-"
+                : countries.cntry2.subregion
+            }
+          />
+          <DetailCompareComponent
             detail={"The Nation's Capital"}
             countryA={
               countries.cntry1.capital == undefined
@@ -120,6 +147,15 @@ export const CompareDetail = () => {
                 ? `(${Object.values(countries.cntry2.currencies)[0].symbol}) ` +
                   Object.values(countries.cntry2.currencies)[0].name
                 : "-"
+            }
+          />
+          <DetailCompareMapsComponent
+            detail={"Maps"}
+            countryA={
+              countries.cntry1
+            }
+            countryB={
+              countries.cntry2
             }
           />
         </tbody>
