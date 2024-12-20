@@ -149,7 +149,7 @@ function CompareForm() {
   return (
     <div className="container-fluid">
       <div id="form" className="container">
-        <h1 className="text-center mb-4">Compare Form</h1>
+        <h1 className="text-center mb-4">Country Comparison</h1>
         <form onSubmit={handleCompare}>
           <div className="row g-3">
             <CountrySelection
