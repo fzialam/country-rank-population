@@ -54,7 +54,7 @@ export const CompareDetail = () => {
     countries.cntry2 == undefined ? (
     <p>Loading...</p>
   ) : (
-    <div className="container mt-5 rounded-4 bg-warning">
+    <div className="container mt-5 rounded-4 bg-warning shadow-lg">
       <table className="table table-borderless">
         <thead>
           <DetailCompareNameComponent
@@ -63,7 +63,7 @@ export const CompareDetail = () => {
             countryB={countries.cntry2}
           />
         </thead>
-        <tbody>
+        <tbody className="text-center">
           <DetailCompareFlagComponent
             detail={"Flag Country"}
             countryA={countries.cntry1}

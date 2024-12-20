@@ -9,7 +9,7 @@ export const DetailCompareFlagComponent = ({ detail, countryA, countryB }) => {
           style={{ objectFit: "fill", width: "50%", height: "50%" }}
         />
       </td>
-      <td className="mt-1 text-center" style={{ fontWeight: "bolder" }}>
+      <td className="mt-1" style={{ fontWeight: "bolder" }}>
         {detail}
       </td>
       <td className="mt-1">
