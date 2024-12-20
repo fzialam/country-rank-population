@@ -17,8 +17,8 @@ export const CountrySelection = ({ country, onSelect, onClear, data }) => (
       </div>
     ) : (
       <div
-        className="bg-light border border-1 mb-3"
-        style={{ height: "200px", width: "350px" }}
+        className="bg-info-subtle border border-1 mb-3"
+        style={{ height: "200px", width: "350px"}}
       />
     )}
     <label htmlFor="country" className="form-label text-center">

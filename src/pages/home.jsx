@@ -79,23 +79,23 @@ function Home() {
 
   return (
     <div className="container mt-5">
-      <h1 className="text-center">Country Rank Population</h1>
+      <h1 className="text-center fw-bolder">Country Rank Population</h1>
       <SearchFormComponent data={sortedData} />
       <div className="overflow-x-auto shadow-sm rounded ">
         <table className="table table-striped table-hover">
           <thead className="table-dark text-center">
             <tr>
               <th scope="col">Flag</th>
-              <th scope="col" onClick={() => sortData("name.common")}>
+              <th scope="col" onClick={() => sortData("name.common")} style={{cursor: 'pointer'}}>
                 Name {getSortIcon("name.common")}
               </th>
-              <th scope="col" onClick={() => sortData("population")}>
+              <th scope="col" onClick={() => sortData("population")} style={{cursor: 'pointer'}}>
                 Population {getSortIcon("population")}
               </th>
-              <th scope="col" onClick={() => sortData("area")}>
+              <th scope="col" onClick={() => sortData("area")} style={{cursor: 'pointer'}}>
                 Area (KM²) {getSortIcon("area")}
               </th>
-              <th scope="col" onClick={() => sortData("region")}>
+              <th scope="col" onClick={() => sortData("region")} style={{cursor: 'pointer'}}>
                 Region {getSortIcon("region")}
               </th>
               <th scope="col">Maps</th>
