@@ -11,7 +11,7 @@ function App() {
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
             <span className='fw-bold'>
-              MyApp
+              Ranking
             </span>
           </NavLink>
           <button
