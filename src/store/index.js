@@ -1,25 +1,32 @@
-import { applyMiddleware, createStore } from 'redux'
-import { logger } from 'redux-logger';
-import { thunk } from 'redux-thunk';
+import { applyMiddleware, createStore } from "redux";
+import { logger } from "redux-logger";
+import { thunk } from "redux-thunk";
+import { ReducerConstant } from "../constant/reducer-constant";
 
 const initialState = {
-    search: '',
-    countries: [],
-    loading: true
-}
+  search: "",
+  countries: [],
+  loading: true,
+  comparedData: [],
+  articles: [],
+};
 
 const reducer = (state = initialState, action) => {
-    switch(action.type){
-        case 'INIT':
-            return {...state, countries: action.countries}
-        case 'SEARCH':
-            return { ...state, search: action.search }
-        case 'LOADING':
-            return { ...state, loading: action.loading }
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case ReducerConstant.INIT:
+      return { ...state, countries: action.countries };
+    case ReducerConstant.SEARCH:
+      return { ...state, search: action.search };
+    case ReducerConstant.LOADING:
+      return { ...state, loading: action.loading };
+    case ReducerConstant.COMPARE:
+      return { ...state, comparedData: action.comparedData };
+    case ReducerConstant.ARTICLES:
+      return { ...state, articles: action.articles };
+    default:
+      return state;
+  }
+};
 
 const store = createStore(reducer, applyMiddleware(logger, thunk));
 

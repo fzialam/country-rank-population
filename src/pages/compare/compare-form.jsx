@@ -1,13 +1,15 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import { UrlConstant } from "../../constant/url-constant";
 import { useNavigate, useParams } from "react-router-dom";
-import CompareDetail from "./compare-detail";
+import { CompareDetail } from "./compare-detail";
 
 import "../../assets/css/compare-form.css";
 import { CountrySelection } from "../../components/country-selection";
+import { ReducerConstant } from "../../constant/reducer-constant";
+import { getCountryByCCA3 } from "../../store/country";
 
 function CompareForm() {
   const data = useSelector((state) =>
@@ -20,6 +22,7 @@ function CompareForm() {
 
   const navigate = useNavigate();
   const { param1, param2 } = useParams();
+  const dispatch = useDispatch();
 
   const [dataMaster, setDataMaster] = useState({
     countries: data,
@@ -129,7 +132,14 @@ function CompareForm() {
         ...x,
         submited: true,
       }));
-      console.log(selectedCountry1, "/n/", selectedCountry2);
+
+      getCountryByCCA3([param1, param2], dispatch)
+
+      dispatch({
+        type: ReducerConstant.LOADING,
+        loading: true,
+      });
+
       navigate(selectedCountry1.id + "/n/" + selectedCountry2.id);
     } else {
       alert("Choose 2 Country to Compare");
@@ -162,12 +172,12 @@ function CompareForm() {
           </div>
         </form>
       </div>
-    <hr className="shadow"/>
-      {(dataMaster.submited || (param1 && param2)) && (
+
+      {/* {(dataMaster.submited || (param1 && param2)) && (
         <div className="mt-2 text-center">
           <CompareDetail />
         </div>
-      )}
+      )} */}
     </div>
   );
 }
